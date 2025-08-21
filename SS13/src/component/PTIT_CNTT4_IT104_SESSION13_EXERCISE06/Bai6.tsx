@@ -1,3 +1,4 @@
+import {Component} from 'react'
 type Post = {
     id: number,
     title: string,
@@ -7,14 +8,17 @@ type Post = {
 type PostList = {
     posts: Post,
 }
-export default function DetailPost({posts}: PostList) {
-  return (
-    <div style={{marginBottom: "20px"}}>
-      <p><strong>Id:</strong> {posts.id}</p>
-      <p><strong>Title:</strong> {posts.title}</p>
-      <p><strong>Content:</strong> {posts.content}</p>
-      <p><strong>Author:</strong> {posts.author}</p>
-      <hr />
-    </div>
-  )
+export default class DetailPost extends Component<PostList> {
+  render(){
+    const { posts } = this.props;
+    return (
+      <div>
+        <h2>Chi tiết bài viết</h2>
+        <p>Id: {posts.id}</p>
+        <p>Tiêu đề: {posts.title}</p>
+        <p>Nội dung: {posts.content}</p>
+        <p>Tác giả: {posts.author}</p>
+      </div>
+    );
+  }
 }

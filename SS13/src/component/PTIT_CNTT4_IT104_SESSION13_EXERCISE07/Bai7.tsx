@@ -1,37 +1,52 @@
-import {useState} from 'react'
+import { Component } from "react";
 
-export default function Apps() {
-    const [theme, setTheme] = useState<"dark" | "light">('light');
-    const [language, setLanguage] = useState<"english" | "vietnamese">("vietnamese");
+type State = {
+  theme: "dark" | "light";
+  language: "english" | "vietnamese";
+};
 
+export default class Apps extends Component<{}, State> {
+  state: State = {
+    theme: "light",
+    language: "vietnamese",
+  };
+
+  toggleTheme = () => {
+    this.setState({ theme: this.state.theme === "light" ? "dark" : "light" });
+  };
+
+  toggleLanguage = () => {
+    this.setState({
+      language: this.state.language === "english" ? "vietnamese" : "english",
+    });
+  };
+
+  render() {
+    const { theme, language } = this.state;
     const appStyle = {
-        backgroundColor: theme === "light" ? "white" : "black",
-        color: theme === "light" ? "black" : "white",
-        padding: "20px",
-        minHeight: "150px",
-        border: "1px solid gray"
-    }
+      backgroundColor: theme === "light" ? "white" : "black",
+      color: theme === "light" ? "black" : "white",
+      padding: "20px",
+      minHeight: "150px",
+      border: "1px solid gray",
+    };
+
     const themeText = theme === "light" ? "sáng" : "tối";
-    const languageText = language === "english" ? "English" : "Tiếng Việt"
+    const languageText = language === "english" ? "English" : "Tiếng Việt";
+
     return (
-    <div style={appStyle}>
-      <h2>Nền: {themeText}</h2>
-      <h2>Ngôn ngữ: {languageText}</h2>
+      <div style={appStyle}>
+        <h2>Nền: {themeText}</h2>
+        <h2>Ngôn ngữ: {languageText}</h2>
 
-      {/* Nút đổi theme */}
-      <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
-        Đổi Theme
-      </button>
+        {/* Nút đổi theme */}
+        <button onClick={this.toggleTheme}>Đổi Theme</button>
 
-      {/* Nút đổi language */}
-      <button
-        style={{ marginLeft: "10px" }}
-        onClick={() =>
-          setLanguage(language === "english" ? "vietnamese" : "english")
-        }
-      >
-        Đổi Ngôn ngữ
-      </button>
-    </div>
-  )
+        {/* Nút đổi language */}
+        <button style={{ marginLeft: "10px" }} onClick={this.toggleLanguage}>
+          Đổi Ngôn ngữ
+        </button>
+      </div>
+    );
+  }
 }
