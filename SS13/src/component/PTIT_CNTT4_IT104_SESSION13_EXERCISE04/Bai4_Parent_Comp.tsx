@@ -1,13 +1,5 @@
-import { Component } from "react";
-class Children_Comp extends Component<{ name: string }> {
-  render() {
-    return (
-      <div>
-        <h3>Họ và tên bên component con: {this.props.name}</h3>
-      </div>
-    );
-  }
-}
+import {Component} from 'react'
+import Children_Comp from "./Bai4_Children_Comp";
 export default class Parent_Comp extends Component<{}, { name: string }> {
   constructor(props: {}) {
     super(props);
@@ -15,7 +7,6 @@ export default class Parent_Comp extends Component<{}, { name: string }> {
       name: "Nguyễn Văn Nam",
     };
   }
-
   render() {
     return (
       <div>
@@ -26,3 +17,4 @@ export default class Parent_Comp extends Component<{}, { name: string }> {
     );
   }
 }
+export { Parent_Comp as Bai4_Parent_Comp };
